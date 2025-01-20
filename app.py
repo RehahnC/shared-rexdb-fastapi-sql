@@ -983,12 +983,6 @@ async def upload_file_custom_db_mysql(
                 "allow_local_infile": True
             }
             
-            # Add SSL if specified
-            if sslmode and sslmode.lower() == 'require':
-                connection_params.update({
-                    "ssl_verify_cert": True,
-                    "ssl_verify_identity": True
-                })
                 
             connection = mysql.connector.connect(**connection_params)
             cursor = connection.cursor()
