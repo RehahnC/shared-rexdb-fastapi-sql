@@ -18,6 +18,11 @@ mysql_password = os.getenv("MYSQL_PASSWORD")
 mysql_database = os.getenv("MYSQL_DATABASE")
 mysql_port = int(os.getenv("MYSQL_PORT", 3306))
 
+# SSL certificate paths
+SSL_CA_PATH = "/etc/mysql/ssl/cloudways_ca.crt"
+SSL_CERT_PATH = "/etc/mysql/ssl/mysql_server.crt"
+SSL_KEY_PATH = "/etc/mysql/ssl/mysql_server.key"
+
 # Initialize FastAPI
 app = FastAPI()
 
@@ -36,7 +41,10 @@ def create_mysql_connection():
         user=mysql_user,
         password=mysql_password,
         database=mysql_database,
-        port=mysql_port
+        port=mysql_port,
+        ssl_ca=SSL_CA_PATH,      # SSL CA Certificate
+        ssl_cert=SSL_CERT_PATH,  # SSL Server Certificate
+        ssl_key=SSL_KEY_PATH     # SSL Private Key
     )
 
 @app.get("/sqlquery/")
