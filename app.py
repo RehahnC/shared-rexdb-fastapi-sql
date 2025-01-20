@@ -105,7 +105,6 @@ def create_azure_connection():
         user=azure_user,
         password=azure_password,
         database=azure_database_name,
-        ssl_disabled=True
     )
     return connection
 
@@ -115,7 +114,6 @@ def create_neon_connection():
         database=neon_database,
         user=neon_user,
         password=neon_password,
-        sslmode='require'
     )
     return connection
 
